@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- เพิ่ม -->
+    <title>ฟอร์มจองตั๋วกิจกรรม</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&display=swap');
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 90%; /* เปลี่ยนจาก fixed 420px เป็น 90% */
+            max-width: clamp(320px, 90%, 420px); /* ให้มี min-max width */
+            margin: 48px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(60, 72, 120, 0.12);
+            padding: 36px 32px 28px 32px;
+        }
+        h2 {
+            text-align: center;
+            color: #3b3b6d;
+            margin-bottom: 18px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 1.8rem; /* เพิ่มขนาดบนหน้าจอใหญ่ */
+        }
+        .info {
+            background: linear-gradient(90deg, #e0e7ff 0%, #f1f5f9 100%);
+            border-left: 5px solid #6366f1;
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin-bottom: 22px;
+            color: #444;
+            font-size: 1em;
+        }
+        .info ul {
+            margin: 8px 0 0 18px;
+            padding: 0;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #3b3b6d;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        input, select {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1.5px solid #c7d2fe;
+            border-radius: 7px;
+            font-size: 1rem;
+            background: #f8fafc;
+            transition: border 0.2s;
+            outline: none;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus {
+            border-color: #6366f1;
+            background: #fff;
+        }
+        .note {
+            color: #818cf8;
+            font-size: 0.9rem;
+            margin-top: 3px;
+        }
+        button[type="submit"] {
+            width: 100%;
+            background: linear-gradient(90deg, #6366f1 0%, #818cf8 100%);
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 8px;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.08);
+            transition: background 0.2s;
+        }
+        button[type="submit"]:hover {
+            background: linear-gradient(90deg, #4f46e5 0%, #6366f1 100%);
+        }
+        .footer-note {
+            margin-top: 32px;
+            color: #a5b4fc;
+            font-size: 0.98em;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 18px 12px 18px 12px;
+                margin: 24px auto;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            label, input, select {
+                font-size: 1rem;
+            }
+            .note {
+                font-size: 0.85rem;
+            }
+            button[type="submit"] {
+                font-size: 1rem;
+                padding: 10px 0;
+            }
+            div[style*="flex-end"] button {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: flex-end;">
+            <button onclick="window.location.href='form health survey.html'" style="background-color: rgb(163, 170, 241); border: rgb(163, 170, 241); border-radius: 10px; padding: 10px;">health survey</button>
+        </div>
+        <h2>ฟอร์มจองตั๋วกิจกรรม</h2>
+        <div class="info">
+            <b>เงื่อนไขการจอง:</b>
+            <ul>
+                <li>ชื่อ-นามสกุล: ต้องมีอย่างน้อย 2 คำ</li>
+                <li>เบอร์โทรศัพท์: ต้องเป็นตัวเลข 10 หลัก (ขึ้นต้นด้วย 0)</li>
+                <li>จำนวนตั๋ว: อย่างน้อย 1 และไม่เกิน 5</li>
+                <li>ถ้าเลือกประเภท VIP หรือ Premium → จำนวนตั๋วต้องไม่เกิน 2</li>
+            </ul>
+        </div>
+        <form autocomplete="off">
+            <div class="form-group">
+                <label for="fullname">ชื่อ-นามสกุล:</label>
+                <input type="text" id="fullname" name="fullname" required pattern="(\S+\s+\S+.*)">
+                <div class="note">* อย่างน้อย 2 คำ</div>
+            </div>
+            <div class="form-group">
+                <label for="phone">เบอร์โทรศัพท์:</label>
+                <input type="tel" id="phone" name="phone" required pattern="0[0-9]{9}" maxlength="10">
+                <div class="note">* 10 หลัก (ขึ้นต้นด้วย 0)</div>
+            </div>
+            <div class="form-group">
+                <label for="ticketType">ประเภทตั๋ว:</label>
+                <select id="ticketType" name="ticketType" required>
+                    <option value="">--เลือกประเภท--</option>
+                    <option value="ปกติ">ปกติ</option>
+                    <option value="VIP">VIP</option>
+                    <option value="Premium">Premium</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ticketCount">จำนวนตั๋ว:</label>
+                <input type="number" id="ticketCount" name="ticketCount" min="1" max="5" required>
+                <div class="note">* 1-5 ใบ (VIP/Premium ไม่เกิน 2 ใบ)</div>
+            </div>
+            <button type="submit">จองตั๋ว</button>
+        </form>
+    </div>
+</body>
+</html>
